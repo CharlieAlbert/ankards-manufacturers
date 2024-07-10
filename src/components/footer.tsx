@@ -1,7 +1,7 @@
 'use client'
 
 import { Footer } from 'flowbite-react'
-import '../style.css'
+import '../app/style.css'
 
 interface FooterItem {
   label: string

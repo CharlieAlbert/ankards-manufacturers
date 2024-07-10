@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { FooterComponent } from './components/footer'
+import { AntdRegistry } from '@ant-design/nextjs-registry'
+import { FooterComponent } from '../components/footer'
 import './globals.css'
 import './style.css'
 
@@ -19,7 +20,9 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${inter.className} page-container`}>
-        <main className='content'>{children}</main>
+        <main className='content'>
+          <AntdRegistry>{children}</AntdRegistry>
+        </main>
         <FooterComponent />
       </body>
     </html>
