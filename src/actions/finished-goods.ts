@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import prisma from '../lib/db'
+import { format } from 'path'
 
 export async function createGood(formData: FormData) {
   const price = formData.get('price')
@@ -57,6 +58,7 @@ export async function createGood(formData: FormData) {
       description,
       unit,
       pricePerUnit: formattedPrice,
+      pricePerUnitFormatted: parseFloat(pricePerUnit),
       color,
       finish
     }

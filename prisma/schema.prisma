@@ -24,7 +24,7 @@ model Post {
 model User {
   id       String @id @default(cuid())
   username String @unique
-  password String
+  hashedPassword String
 }
 
 model Material {
@@ -79,15 +79,16 @@ model Usage {
 }
 
 model FinishedGoods {
-  id           String   @id @default(cuid())
-  batchNumber  String
-  name         String
-  description  String?
-  unit         String
-  pricePerUnit String
-  color        String?
-  finish       String?
-  createdAt    DateTime @default(now())
+  id                    String   @id @default(cuid())
+  batchNumber           String
+  name                  String
+  description           String?
+  unit                  String
+  pricePerUnit          Float
+  pricePerUnitFormatted String
+  color                 String?
+  finish                String?
+  createdAt             DateTime @default(now())
 }
 
 model Category {
