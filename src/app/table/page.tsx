@@ -13,11 +13,7 @@ interface DataType {
   finish: string | null
 }
 
-interface ServerComponentProps {
-  data: DataType[]
-}
-
-export default async function TablePage({ data }: ServerComponentProps) {
+export default async function TablePage({ data }: { data: DataType[] }) {
   // useAuth()
   const rawData = await prisma.finishedGoods.findMany()
 
