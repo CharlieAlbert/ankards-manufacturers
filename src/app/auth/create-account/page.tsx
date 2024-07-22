@@ -12,28 +12,30 @@ interface FieldType {
   confirmPassword?: string
 }
 
-const onFinish = async (values: any, router: ReturnType<typeof useRouter>) => {
-  console.log(values)
-  try {
-    const formData = new FormData()
-    Object.keys(values).forEach(key => {
-      formData.append(key, values[key])
-    })
-    await createUser(formData)
-    console.log('Success:', 'User added successfully')
-    message.success('Account created successfully!')
-    router.push('/auth/login')
-  } catch (error) {
-    console.error('Error: ', error)
-    message.error('Failed to add user')
-  }
-}
-
 const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = errorInfo => {
   console.log('Failed:', errorInfo)
 }
 
 export default function LoginForm() {
+  const router = useRouter()
+
+  const onFinish = async (values: any) => {
+    console.log(values)
+    try {
+      const formData = new FormData()
+      Object.keys(values).forEach(key => {
+        formData.append(key, values[key])
+      })
+      await createUser(formData)
+      console.log('Success:', 'User added successfully')
+      message.success('Account created successfully!')
+      router.push('/auth/login')
+    } catch (error) {
+      console.error('Error: ', error)
+      message.error('Failed to add user')
+    }
+  }
+
   return (
     <main className='m-2 flex h-[80vh] flex-col items-center justify-center'>
       <Form
