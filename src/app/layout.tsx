@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${inter.className} page-container`}>
+      <body className={`${inter.className} page-container bg-[whitesmoke]`}>
         <main className='content'>
           <AntdRegistry>{children}</AntdRegistry>
         </main>

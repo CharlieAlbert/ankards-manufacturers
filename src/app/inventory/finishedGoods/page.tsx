@@ -1,7 +1,8 @@
 'use client'
 
-import { Button, Form, Input, InputNumber, Select, message } from 'antd'
+import { Form, Input, InputNumber, Select, message } from 'antd'
 import { createGood } from '@/src/actions/finished-goods'
+import { useRouter } from 'next/navigation'
 
 const layout = {
   labelCol: { span: 8 },
@@ -24,23 +25,25 @@ const validateMessages = {
 }
 /* eslint-enable no-template-curly-in-string */
 
-const onFinish = async (values: any) => {
-  console.log(values)
-  try {
-    const formData = new FormData()
-    Object.keys(values).forEach(key => {
-      formData.append(key, values[key])
-    })
-    await createGood(formData)
-    console.log('Success:', 'Product added successfully')
-    message.success('Product added successfully!')
-  } catch (error) {
-    console.error('Error:', error)
-    message.error('Failed to add product. Try again later')
-  }
-}
-
 export default function AddFinishedGoods() {
+  const router = useRouter()
+  const onFinish = async (values: any) => {
+    console.log(values)
+    try {
+      const formData = new FormData()
+      Object.keys(values).forEach(key => {
+        formData.append(key, values[key])
+      })
+      await createGood(formData)
+      console.log('Success:', 'Product added successfully')
+      message.success('Product added successfully!')
+      router.push('/table')
+    } catch (error) {
+      console.error('Error:', error)
+      message.error('Failed to add product. Try again later')
+    }
+  }
+  // useAuth()
   return (
     <main className='m-2 flex flex-col items-center justify-center'>
       <Form

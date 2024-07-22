@@ -45,11 +45,13 @@ export async function createGood(formData: FormData) {
 
   const batchNumber = `${currentYear}${month}${sequence.toString().padStart(3, '00')}`
 
+  const priceAsFloat = parseFloat(pricePerUnit)
+
   const formattedPrice = new Intl.NumberFormat('en-US', {
     style: 'decimal',
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
-  }).format(parseFloat(pricePerUnit))
+  }).format(priceAsFloat)
 
   await prisma.finishedGoods.create({
     data: {
@@ -57,8 +59,8 @@ export async function createGood(formData: FormData) {
       name,
       description,
       unit,
-      pricePerUnit: formattedPrice,
-      pricePerUnitFormatted: parseFloat(pricePerUnit),
+      pricePerUnit: priceAsFloat,
+      pricePerUnitFormatted: formattedPrice,
       color,
       finish
     }

@@ -1,8 +1,24 @@
-import React from 'react'
+'use client'
 
-const page = () => {
+import React, { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { useAuth } from '../hooks/useAuth'
+
+const Page = () => {
+  const router = useRouter()
+
+  useEffect(() => {
+    const token = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('token='))
+      ?.split('=')[1]
+
+    if (!token) {
+      router.push('/auth/login')
+    }
+  }, [router])
   return (
-    <div className='bg-[whitesmoke]'>
+    <div className=''>
       <section className='p-24'>
         <div className='container'>
           <h1 className='text-3xl font-bold'>Next TS Starter...</h1>
@@ -12,4 +28,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
