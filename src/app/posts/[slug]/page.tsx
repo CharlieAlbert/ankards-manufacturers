@@ -1,6 +1,12 @@
 import prisma from '@/src/lib/db'
 
-export default async function PostPage({ params }) {
+type Slug = {
+  params: {
+    slug: string
+  }
+}
+
+export default async function PostPage({ params }: Slug) {
   const post = await prisma.post.findUnique({
     where: {
       slug: params.slug
