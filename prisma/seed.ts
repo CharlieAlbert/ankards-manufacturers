@@ -17,7 +17,7 @@ const initialFinishedGood: Prisma.FinishedGoodsCreateInput[] = [
 const initialUser: Prisma.UserCreateInput[] = [
   {
     username: 'Ankards',
-    hashedPassword: '4yrr7tjddwhr77r8'
+    hashedPassword: '4yrr7tjddwhr77r8t'
   }
 ]
 
