@@ -1,7 +1,8 @@
 import { Prisma, PrismaClient } from '@prisma/client'
+
 const prisma = new PrismaClient()
 
-const initialFinishedGood: Prisma.FinishedGoodsCreateInput[] = [
+const initialFinishedGood = [
   {
     batchNumber: '2407001',
     name: 'Covermatt',
@@ -14,7 +15,7 @@ const initialFinishedGood: Prisma.FinishedGoodsCreateInput[] = [
   }
 ]
 
-const initialUser: Prisma.UserCreateInput[] = [
+const initialUser = [
   {
     username: 'Ankards',
     hashedPassword: '4yrr7tjddwhr77r8t'

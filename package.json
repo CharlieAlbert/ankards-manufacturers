@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.0",
-    "@prisma/client": "5.16.1",
+    "@prisma/client": "5.17.0",
     "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/auth-helpers-react": "^0.5.0",
     "@supabase/supabase-js": "^2.44.3",
@@ -43,7 +43,7 @@
     "postcss": "^8",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.14",
-    "prisma": "^5.16.1",
+    "prisma": "^5.17.0",
     "supabase": "^1.183.5",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
