@@ -54,8 +54,8 @@ export default function TableComponent({ data }: ClientTableProps) {
         item.pricePerUnitFormatted
           .toLowerCase()
           .includes(value.toLowerCase()) ||
-        (item.color ?? '').toLowerCase().includes(value.toLowerCase()) ||
-        (item.finish ?? '').toLowerCase().includes(value.toLowerCase())
+        item.color?.toLowerCase().includes(value.toLowerCase() ?? false) ||
+        item.finish?.toLowerCase().includes(value.toLowerCase() ?? false)
     )
     setFilteredData(searchedData)
   }
