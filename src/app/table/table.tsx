@@ -4,19 +4,11 @@ import React, { useState } from 'react'
 import { Table, Input } from 'antd'
 import type { TableProps } from 'antd'
 import prisma from '@/src/lib/db'
+import { DataType } from './types'
 
 const { Search } = Input
 
-interface DataType {
-  batchNumber: string
-  name: string
-  unit: string
-  pricePerUnit: string
-  color: string
-  finish: string
-}
-
-interface ClientTableProps {
+export interface ClientTableProps {
   data: DataType[]
 }
 
@@ -36,7 +28,7 @@ const columns: TableProps<DataType>['columns'] = [
   {
     title: 'Price',
     className: 'column-money',
-    dataIndex: 'price',
+    dataIndex: 'pricePerUnitFormatted'
   },
   {
     title: 'color',
@@ -59,6 +51,9 @@ export default function TableComponent({ data }: ClientTableProps) {
         item.batchNumber.toLowerCase().includes(value.toLowerCase()) ||
         item.name.toLowerCase().includes(value.toLowerCase()) ||
         item.unit.toLowerCase().includes(value.toLowerCase()) ||
+        item.pricePerUnitFormatted
+          .toLowerCase()
+          .includes(value.toLowerCase()) ||
         item.color.toLowerCase().includes(value.toLowerCase() ?? false) ||
         item.finish.toLowerCase().includes(value.toLowerCase() ?? false)
     )
@@ -69,7 +64,6 @@ export default function TableComponent({ data }: ClientTableProps) {
     <div>
       <Search
         placeholder='Search table'
-        enterButton='Search'
         value={searchText}
         onChange={e => handleSearch(e.target.value)}
         style={{ marginBottom: 20, width: 300 }}

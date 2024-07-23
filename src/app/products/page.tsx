@@ -1,9 +1,11 @@
 import prisma from '@/src/lib/db'
+import { Prisma } from '@prisma/client'
 
 const tableHead = ['name', 'unit', 'price', 'color']
 
 export default async function ViewProducts() {
-  const products = await prisma.finishedGoods.findMany()
+  const products: Prisma.FinishedGoodsCreateInput[] =
+    await prisma.finishedGoods.findMany()
 
   return (
     <main className='overflow-x-auto'>
