@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Ankards Company Limited',
-  description: 'Makers of Paint and adhesives'
+  description: 'Makers of Paint and Adhesives'
 }
 
 export default function RootLayout({
