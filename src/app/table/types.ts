@@ -1,4 +1,4 @@
-export interface DataType {
+export type DataType = {
   batchNumber: string
   name: string
   unit: string

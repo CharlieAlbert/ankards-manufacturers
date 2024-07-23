@@ -3,17 +3,13 @@ import TableComponent from './table'
 import { Prisma } from '@prisma/client'
 import { DataType } from './types'
 
-interface FinishedGoods {
-  id: string
+type FinishedGoods = {
   batchNumber: string
   name: string
-  description: string | null
   unit: string
-  pricePerUnit: number
   pricePerUnitFormatted: string
   color: string | null
   finish: string | null
-  createdAt?: Date
 }
 
 export default async function TablePage() {
