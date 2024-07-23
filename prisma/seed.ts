@@ -2,7 +2,7 @@ import { Prisma, PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-const initialFinishedGood: Prisma.FinishedGoodsCreateInput[] = [
+const initialFinishedGood = [
   {
     batchNumber: '2407001',
     name: 'Covermatt',
