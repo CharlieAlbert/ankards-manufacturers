@@ -3,6 +3,6 @@ export interface DataType {
   name: string
   unit: string
   pricePerUnitFormatted: string
-  color: string
-  finish: string
+  color: string | null
+  finish: string | null
 }

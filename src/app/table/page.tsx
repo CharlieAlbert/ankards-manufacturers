@@ -6,7 +6,7 @@ import { DataType } from './types'
 
 export default async function TablePage() {
   // useAuth()
-  const rawData: Prisma.FinishedGoodsCreateInput[] =
+  const rawData: DataType[] =
     await prisma.finishedGoods.findMany()
 
   const formattedData: DataType[] = rawData.map(item => ({
