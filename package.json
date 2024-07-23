@@ -10,7 +10,8 @@
     "lint": "next lint",
     "generate": "prisma generate",
     "migrate:dev": "prisma generate && prisma migrate dev",
-    "migrate:prod": "prisma generate && prisma migrate deploy --schema=prisma/schema.prisma"
+    "migrate:prod": "prisma generate && prisma migrate deploy --schema=prisma/schema.prisma",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.0",
