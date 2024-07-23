@@ -1,9 +1,9 @@
+// components/table.tsx
 'use client'
 
 import React, { useState } from 'react'
 import { Table, Input } from 'antd'
 import type { TableProps } from 'antd'
-import prisma from '@/src/lib/db'
 import { DataType } from './types'
 
 const { Search } = Input
@@ -31,11 +31,11 @@ const columns: TableProps<DataType>['columns'] = [
     dataIndex: 'pricePerUnitFormatted'
   },
   {
-    title: 'color',
+    title: 'Color',
     dataIndex: 'color'
   },
   {
-    title: 'finish',
+    title: 'Finish',
     dataIndex: 'finish'
   }
 ]
@@ -54,8 +54,8 @@ export default function TableComponent({ data }: ClientTableProps) {
         item.pricePerUnitFormatted
           .toLowerCase()
           .includes(value.toLowerCase()) ||
-        item.color?.toLowerCase().includes(value.toLowerCase() ?? false) ||
-        item.finish?.toLowerCase().includes(value.toLowerCase() ?? false)
+        (item.color?.toLowerCase() ?? '').includes(value.toLowerCase()) ||
+        (item.finish?.toLowerCase() ?? '').includes(value.toLowerCase())
     )
     setFilteredData(searchedData)
   }
