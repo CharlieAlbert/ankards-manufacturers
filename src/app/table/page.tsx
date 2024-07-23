@@ -1,10 +1,11 @@
 import prisma from '@/src/lib/db'
 import TableComponent from './table'
-import { FinishedGoods } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 import { DataType } from './types'
 
 export default async function TablePage() {
-  const rawData: FinishedGoods[] = await prisma.finishedGoods.findMany()
+  const rawData: Prisma.FinishedGoodsCreateInput[] =
+    await prisma.finishedGoods.findMany()
 
   const formattedData: DataType[] = rawData.map(item => ({
     batchNumber: item.batchNumber,
