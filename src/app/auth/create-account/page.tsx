@@ -26,10 +26,18 @@ export default function LoginForm() {
       Object.keys(values).forEach(key => {
         formData.append(key, values[key])
       })
-      await createUser(formData)
-      console.log('Success:', 'User added successfully')
-      message.success('Account created successfully!')
-      router.push('/auth/login')
+      const response = await createUser(formData)
+
+      if (response && response.token) {
+        const maxAge = 1800 // 30 minutes
+        const expires = new Date(Date.now() + maxAge * 1000).toUTCString()
+        document.cookie = `token=${response.token}; path=/; max-age=${maxAge}; expires=${expires}; secure=${process.env.NODE_ENV === 'production'}; HttpOnly`
+        console.log('Success:', 'User added successfully')
+        message.success('Account created successfully!')
+        router.push('/new/batch')
+      } else {
+        throw new Error('Failed to create session')
+      }
     } catch (error) {
       console.error('Error: ', error)
       message.error('Failed to add user')

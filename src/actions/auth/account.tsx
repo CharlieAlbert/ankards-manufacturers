@@ -6,6 +6,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { SignJWT } from 'jose'
 import { cookies } from 'next/headers'
 
+const secret = new TextEncoder().encode(process.env.TOKEN_SECRET)
+const alg = 'HS256'
+
 export async function createUser(formData: FormData) {
   const username = formData.get('username') as string
   const password = formData.get('password') as string
@@ -18,7 +21,21 @@ export async function createUser(formData: FormData) {
       hashedPassword
     }
   })
-  return newUser
+
+  const token = await new SignJWT({
+    id: newUser.id,
+    username: newUser.username
+  })
+    .setProtectedHeader({ alg })
+    .setExpirationTime('30m')
+    .sign(secret)
+
+  cookies().set('token', token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    path: '/'
+  })
+  return { token, newUser }
 }
 
 export async function UserLogin(formData: FormData) {
@@ -32,9 +49,6 @@ export async function UserLogin(formData: FormData) {
   })
 
   if (loginUser && (await verifyPassword(password, loginUser.hashedPassword))) {
-    const secret = new TextEncoder().encode(process.env.TOKEN_SECRET)
-    const alg = 'HS256'
-
     const token = await new SignJWT({
       id: loginUser.id,
       username: loginUser.username

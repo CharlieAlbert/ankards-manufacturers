@@ -1,6 +1,8 @@
-import React from 'react'
-import { Button, Form, Input, InputNumber, Select } from 'antd'
+'use client'
+
+import { Form, Input, InputNumber, Select, message } from 'antd'
 import { createGood } from '@/src/actions/finished-goods'
+import { useRouter } from 'next/navigation'
 
 const layout = {
   labelCol: { span: 8 },
@@ -23,20 +25,34 @@ const validateMessages = {
 }
 /* eslint-enable no-template-curly-in-string */
 
-const onFinish = (values: any) => {
-  console.log(values)
-}
-
 export default function AddFinishedGoods() {
+  const router = useRouter()
+  const onFinish = async (values: any) => {
+    console.log(values)
+    try {
+      const formData = new FormData()
+      Object.keys(values).forEach(key => {
+        formData.append(key, values[key])
+      })
+      await createGood(formData)
+      console.log('Success:', 'Product added successfully')
+      message.success('Product added successfully!')
+      router.push('/table')
+    } catch (error) {
+      console.error('Error:', error)
+      message.error('Failed to add product. Try again later')
+    }
+  }
+  // useAuth()
   return (
-    <main>
+    <main className='m-2 flex flex-col items-center justify-center'>
       <Form
-        action={createGood}
-        {...layout}
+        layout='vertical'
         name='nest-messages'
         onFinish={onFinish}
-        style={{ maxWidth: 600 }}
+        // style={{ minWidth: 300, maxWidth: 600 }}
         validateMessages={validateMessages}
+        className='flex w-[350px] flex-col px-4 py-5'
       >
         <Form.Item name='name' label='Name' rules={[{ required: true }]}>
           <Input />
@@ -78,11 +94,9 @@ export default function AddFinishedGoods() {
           </Select>
         </Form.Item>
 
-        <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-          <Button type='primary' htmlType='submit'>
-            Add Product
-          </Button>
-        </Form.Item>
+        <button className='rounded-sm bg-blue-500 p-2 text-white'>
+          Add Product
+        </button>
       </Form>
     </main>
   )

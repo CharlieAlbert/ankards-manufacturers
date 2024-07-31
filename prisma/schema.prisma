@@ -11,71 +11,33 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id        String   @id @default(cuid())
-  title     String
-  slug      String   @unique
-  content   String
-  published Boolean  @default(false)
-  createAt  DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
 model User {
   id             String @id @default(cuid())
   username       String @unique
   hashedPassword String
 }
 
-model Material {
-  id               String             @id @default(cuid())
-  name             String
-  description      String?
-  unit             String
-  costPerUnit      Float
-  category         String
-  stock            Stock[]
-  usage            Usage[]
-  MaterialSupplier MaterialSupplier[]
+model GoodsOnSale {
+  id         String   @id @default(cuid())
+  name       String
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String
+  size       Size     @relation(fields: [sizeId], references: [id])
+  sizeId     String
+  price      Float
+  createdAt  DateTime @default(now())
 }
 
-model Supplier {
-  id          String             @id @default(cuid())
+model Category {
+  id          String        @id @default(cuid())
   name        String
-  contactInfo String?
-  address     String?
-  email       String
-  phone       String
-  materials   MaterialSupplier[]
+  goodsOnSale GoodsOnSale[]
 }
 
-model MaterialSupplier {
-  id         String @id @default(cuid())
-  materialId String
-  supplierId String
-
-  material Material @relation(fields: [materialId], references: [id])
-  supplier Supplier @relation(fields: [supplierId], references: [id])
-}
-
-model Stock {
-  id          String   @id @default(cuid())
-  materialId  String
-  quantity    Float
-  location    String
-  lastUpdated DateTime @default(now())
-
-  material Material @relation(fields: [materialId], references: [id])
-}
-
-model Usage {
-  id           String   @id @default(cuid())
-  materialId   String
-  quantityUsed Float
-  dateUsed     DateTime
-  batchNumber  String?
-
-  material Material @relation(fields: [materialId], references: [id])
+model Size {
+  id          String        @id @default(cuid())
+  name        String
+  goodsOnSale GoodsOnSale[]
 }
 
 model FinishedGoods {
@@ -89,95 +51,4 @@ model FinishedGoods {
   color                 String?
   finish                String?
   createdAt             DateTime @default(now())
-}
-
-model Category {
-  id          String  @id @default(cuid())
-  name        String
-  description String?
-}
-
-model FinishedGoodStock {
-  id              String   @id @default(cuid())
-  finishedGoodsId String
-  quantity        Float
-  location        String
-  lastUpdated     DateTime @default(now())
-}
-
-model Quotation {
-  id           String          @id @default(cuid())
-  customerName String
-  date         DateTime
-  totalAmount  Float
-  discount     Float?
-  vat          Float?
-  status       String          @default("Pending")
-  items        QuotationItem[]
-  orders       Orders[]
-}
-
-model QuotationItem {
-  id             String @id @default(cuid())
-  quotationId    String
-  finishedGoodId String
-  quantity       Float
-  unitPrice      Float
-  totalPrice     Float
-
-  quotation Quotation @relation(fields: [quotationId], references: [id])
-}
-
-model Orders {
-  id            String          @id @default(cuid())
-  quotationId   String
-  customerName  String
-  date          DateTime
-  totalAmount   Float
-  status        String          @default("Pending")
-  items         OrderItem[]
-  invoices      Invoice[]
-  deliveryNotes DeliveryNotes[]
-
-  quotation Quotation @relation(fields: [quotationId], references: [id])
-}
-
-model OrderItem {
-  id             String @id @default(cuid())
-  orderId        String
-  finishedGoodId String
-  quantity       Float
-  unitPrice      Float
-  totalPrice     Float
-
-  order Orders @relation(fields: [orderId], references: [id])
-}
-
-model DeliveryNotes {
-  id           String   @id @default(cuid())
-  orderId      String
-  customerName String
-  date         DateTime
-
-  order Orders @relation(fields: [orderId], references: [id])
-}
-
-model Invoice {
-  id           String   @id @default(cuid())
-  orderId      String
-  customerName String
-  date         DateTime
-  totalAmount  Float
-  status       String   @default("Unpaid")
-
-  order Orders @relation(fields: [orderId], references: [id])
-}
-
-model Sales {
-  id             String   @id @default(cuid())
-  finishedGoodId String
-  quantitySold   Float
-  saleDate       DateTime
-  customerName   String
-  totalPrice     Float
 }

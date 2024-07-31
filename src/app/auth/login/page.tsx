@@ -30,7 +30,7 @@ export default function LoginForm() {
         document.cookie = `token=${response.token}; path=/; max-age=${maxAge}; expires=${expires}; secure=${process.env.NODE_ENV === 'production'}; HttpOnly`
         console.log('Success: ', response.message)
         message.success('Login Successful')
-        router.push('/inventory/finishedGoods')
+        router.push('/new/batch')
       } else {
         throw new Error('Failed to login')
       }

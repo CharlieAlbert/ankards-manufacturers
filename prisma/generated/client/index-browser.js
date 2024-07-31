@@ -119,60 +119,29 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.PostScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  slug: 'slug',
-  content: 'content',
-  published: 'published',
-  createAt: 'createAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   username: 'username',
   hashedPassword: 'hashedPassword'
 };
 
-exports.Prisma.MaterialScalarFieldEnum = {
+exports.Prisma.GoodsOnSaleScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  description: 'description',
-  unit: 'unit',
-  costPerUnit: 'costPerUnit',
-  category: 'category'
+  categoryId: 'categoryId',
+  sizeId: 'sizeId',
+  price: 'price',
+  createdAt: 'createdAt'
 };
 
-exports.Prisma.SupplierScalarFieldEnum = {
+exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  contactInfo: 'contactInfo',
-  address: 'address',
-  email: 'email',
-  phone: 'phone'
+  name: 'name'
 };
 
-exports.Prisma.MaterialSupplierScalarFieldEnum = {
+exports.Prisma.SizeScalarFieldEnum = {
   id: 'id',
-  materialId: 'materialId',
-  supplierId: 'supplierId'
-};
-
-exports.Prisma.StockScalarFieldEnum = {
-  id: 'id',
-  materialId: 'materialId',
-  quantity: 'quantity',
-  location: 'location',
-  lastUpdated: 'lastUpdated'
-};
-
-exports.Prisma.UsageScalarFieldEnum = {
-  id: 'id',
-  materialId: 'materialId',
-  quantityUsed: 'quantityUsed',
-  dateUsed: 'dateUsed',
-  batchNumber: 'batchNumber'
+  name: 'name'
 };
 
 exports.Prisma.FinishedGoodsScalarFieldEnum = {
@@ -186,82 +155,6 @@ exports.Prisma.FinishedGoodsScalarFieldEnum = {
   color: 'color',
   finish: 'finish',
   createdAt: 'createdAt'
-};
-
-exports.Prisma.CategoryScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  description: 'description'
-};
-
-exports.Prisma.FinishedGoodStockScalarFieldEnum = {
-  id: 'id',
-  finishedGoodsId: 'finishedGoodsId',
-  quantity: 'quantity',
-  location: 'location',
-  lastUpdated: 'lastUpdated'
-};
-
-exports.Prisma.QuotationScalarFieldEnum = {
-  id: 'id',
-  customerName: 'customerName',
-  date: 'date',
-  totalAmount: 'totalAmount',
-  discount: 'discount',
-  vat: 'vat',
-  status: 'status'
-};
-
-exports.Prisma.QuotationItemScalarFieldEnum = {
-  id: 'id',
-  quotationId: 'quotationId',
-  finishedGoodId: 'finishedGoodId',
-  quantity: 'quantity',
-  unitPrice: 'unitPrice',
-  totalPrice: 'totalPrice'
-};
-
-exports.Prisma.OrdersScalarFieldEnum = {
-  id: 'id',
-  quotationId: 'quotationId',
-  customerName: 'customerName',
-  date: 'date',
-  totalAmount: 'totalAmount',
-  status: 'status'
-};
-
-exports.Prisma.OrderItemScalarFieldEnum = {
-  id: 'id',
-  orderId: 'orderId',
-  finishedGoodId: 'finishedGoodId',
-  quantity: 'quantity',
-  unitPrice: 'unitPrice',
-  totalPrice: 'totalPrice'
-};
-
-exports.Prisma.DeliveryNotesScalarFieldEnum = {
-  id: 'id',
-  orderId: 'orderId',
-  customerName: 'customerName',
-  date: 'date'
-};
-
-exports.Prisma.InvoiceScalarFieldEnum = {
-  id: 'id',
-  orderId: 'orderId',
-  customerName: 'customerName',
-  date: 'date',
-  totalAmount: 'totalAmount',
-  status: 'status'
-};
-
-exports.Prisma.SalesScalarFieldEnum = {
-  id: 'id',
-  finishedGoodId: 'finishedGoodId',
-  quantitySold: 'quantitySold',
-  saleDate: 'saleDate',
-  customerName: 'customerName',
-  totalPrice: 'totalPrice'
 };
 
 exports.Prisma.SortOrder = {
@@ -281,23 +174,11 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  Post: 'Post',
   User: 'User',
-  Material: 'Material',
-  Supplier: 'Supplier',
-  MaterialSupplier: 'MaterialSupplier',
-  Stock: 'Stock',
-  Usage: 'Usage',
-  FinishedGoods: 'FinishedGoods',
+  GoodsOnSale: 'GoodsOnSale',
   Category: 'Category',
-  FinishedGoodStock: 'FinishedGoodStock',
-  Quotation: 'Quotation',
-  QuotationItem: 'QuotationItem',
-  Orders: 'Orders',
-  OrderItem: 'OrderItem',
-  DeliveryNotes: 'DeliveryNotes',
-  Invoice: 'Invoice',
-  Sales: 'Sales'
+  Size: 'Size',
+  FinishedGoods: 'FinishedGoods'
 };
 
 /**
