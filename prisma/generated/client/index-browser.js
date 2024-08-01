@@ -141,7 +141,7 @@ exports.Prisma.CategoryScalarFieldEnum = {
 
 exports.Prisma.SizeScalarFieldEnum = {
   id: 'id',
-  name: 'name'
+  size: 'size'
 };
 
 exports.Prisma.FinishedGoodsScalarFieldEnum = {

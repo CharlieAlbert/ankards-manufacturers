@@ -3,7 +3,7 @@
 import React from 'react'
 import { Form, Input, message } from 'antd'
 import type { FormProps } from 'antd'
-import { createUser } from '@/src/actions/auth/account'
+import { createUser } from '@/src/api/auth/account'
 import { useRouter } from 'next/navigation'
 
 interface FieldType {

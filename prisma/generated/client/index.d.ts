@@ -4046,34 +4046,34 @@ export namespace Prisma {
 
   export type SizeMinAggregateOutputType = {
     id: string | null
-    name: string | null
+    size: string | null
   }
 
   export type SizeMaxAggregateOutputType = {
     id: string | null
-    name: string | null
+    size: string | null
   }
 
   export type SizeCountAggregateOutputType = {
     id: number
-    name: number
+    size: number
     _all: number
   }
 
 
   export type SizeMinAggregateInputType = {
     id?: true
-    name?: true
+    size?: true
   }
 
   export type SizeMaxAggregateInputType = {
     id?: true
-    name?: true
+    size?: true
   }
 
   export type SizeCountAggregateInputType = {
     id?: true
-    name?: true
+    size?: true
     _all?: true
   }
 
@@ -4151,7 +4151,7 @@ export namespace Prisma {
 
   export type SizeGroupByOutputType = {
     id: string
-    name: string
+    size: string
     _count: SizeCountAggregateOutputType | null
     _min: SizeMinAggregateOutputType | null
     _max: SizeMaxAggregateOutputType | null
@@ -4173,19 +4173,19 @@ export namespace Prisma {
 
   export type SizeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
+    size?: boolean
     goodsOnSale?: boolean | Size$goodsOnSaleArgs<ExtArgs>
     _count?: boolean | SizeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["size"]>
 
   export type SizeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
+    size?: boolean
   }, ExtArgs["result"]["size"]>
 
   export type SizeSelectScalar = {
     id?: boolean
-    name?: boolean
+    size?: boolean
   }
 
   export type SizeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4201,7 +4201,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      name: string
+      size: string
     }, ExtArgs["result"]["size"]>
     composites: {}
   }
@@ -4597,7 +4597,7 @@ export namespace Prisma {
    */ 
   interface SizeFieldRefs {
     readonly id: FieldRef<"Size", 'String'>
-    readonly name: FieldRef<"Size", 'String'>
+    readonly size: FieldRef<"Size", 'String'>
   }
     
 
@@ -5963,7 +5963,7 @@ export namespace Prisma {
 
   export const SizeScalarFieldEnum: {
     id: 'id',
-    name: 'name'
+    size: 'size'
   };
 
   export type SizeScalarFieldEnum = (typeof SizeScalarFieldEnum)[keyof typeof SizeScalarFieldEnum]
@@ -6142,6 +6142,7 @@ export namespace Prisma {
 
   export type GoodsOnSaleWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    name_categoryId_sizeId?: GoodsOnSaleNameCategoryIdSizeIdCompoundUniqueInput
     AND?: GoodsOnSaleWhereInput | GoodsOnSaleWhereInput[]
     OR?: GoodsOnSaleWhereInput[]
     NOT?: GoodsOnSaleWhereInput | GoodsOnSaleWhereInput[]
@@ -6152,7 +6153,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"GoodsOnSale"> | Date | string
     category?: XOR<CategoryRelationFilter, CategoryWhereInput>
     size?: XOR<SizeRelationFilter, SizeWhereInput>
-  }, "id">
+  }, "id" | "name_categoryId_sizeId">
 
   export type GoodsOnSaleOrderByWithAggregationInput = {
     id?: SortOrder
@@ -6225,13 +6226,13 @@ export namespace Prisma {
     OR?: SizeWhereInput[]
     NOT?: SizeWhereInput | SizeWhereInput[]
     id?: StringFilter<"Size"> | string
-    name?: StringFilter<"Size"> | string
+    size?: StringFilter<"Size"> | string
     goodsOnSale?: GoodsOnSaleListRelationFilter
   }
 
   export type SizeOrderByWithRelationInput = {
     id?: SortOrder
-    name?: SortOrder
+    size?: SortOrder
     goodsOnSale?: GoodsOnSaleOrderByRelationAggregateInput
   }
 
@@ -6240,13 +6241,13 @@ export namespace Prisma {
     AND?: SizeWhereInput | SizeWhereInput[]
     OR?: SizeWhereInput[]
     NOT?: SizeWhereInput | SizeWhereInput[]
-    name?: StringFilter<"Size"> | string
+    size?: StringFilter<"Size"> | string
     goodsOnSale?: GoodsOnSaleListRelationFilter
   }, "id">
 
   export type SizeOrderByWithAggregationInput = {
     id?: SortOrder
-    name?: SortOrder
+    size?: SortOrder
     _count?: SizeCountOrderByAggregateInput
     _max?: SizeMaxOrderByAggregateInput
     _min?: SizeMinOrderByAggregateInput
@@ -6257,7 +6258,7 @@ export namespace Prisma {
     OR?: SizeScalarWhereWithAggregatesInput[]
     NOT?: SizeScalarWhereWithAggregatesInput | SizeScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Size"> | string
-    name?: StringWithAggregatesFilter<"Size"> | string
+    size?: StringWithAggregatesFilter<"Size"> | string
   }
 
   export type FinishedGoodsWhereInput = {
@@ -6483,41 +6484,41 @@ export namespace Prisma {
 
   export type SizeCreateInput = {
     id?: string
-    name: string
+    size: string
     goodsOnSale?: GoodsOnSaleCreateNestedManyWithoutSizeInput
   }
 
   export type SizeUncheckedCreateInput = {
     id?: string
-    name: string
+    size: string
     goodsOnSale?: GoodsOnSaleUncheckedCreateNestedManyWithoutSizeInput
   }
 
   export type SizeUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    size?: StringFieldUpdateOperationsInput | string
     goodsOnSale?: GoodsOnSaleUpdateManyWithoutSizeNestedInput
   }
 
   export type SizeUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    size?: StringFieldUpdateOperationsInput | string
     goodsOnSale?: GoodsOnSaleUncheckedUpdateManyWithoutSizeNestedInput
   }
 
   export type SizeCreateManyInput = {
     id?: string
-    name: string
+    size: string
   }
 
   export type SizeUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    size?: StringFieldUpdateOperationsInput | string
   }
 
   export type SizeUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    size?: StringFieldUpdateOperationsInput | string
   }
 
   export type FinishedGoodsCreateInput = {
@@ -6694,6 +6695,12 @@ export namespace Prisma {
     isNot?: SizeWhereInput
   }
 
+  export type GoodsOnSaleNameCategoryIdSizeIdCompoundUniqueInput = {
+    name: string
+    categoryId: string
+    sizeId: string
+  }
+
   export type GoodsOnSaleCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -6786,17 +6793,17 @@ export namespace Prisma {
 
   export type SizeCountOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
+    size?: SortOrder
   }
 
   export type SizeMaxOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
+    size?: SortOrder
   }
 
   export type SizeMinOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
+    size?: SortOrder
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -7169,12 +7176,12 @@ export namespace Prisma {
 
   export type SizeCreateWithoutGoodsOnSaleInput = {
     id?: string
-    name: string
+    size: string
   }
 
   export type SizeUncheckedCreateWithoutGoodsOnSaleInput = {
     id?: string
-    name: string
+    size: string
   }
 
   export type SizeCreateOrConnectWithoutGoodsOnSaleInput = {
@@ -7216,12 +7223,12 @@ export namespace Prisma {
 
   export type SizeUpdateWithoutGoodsOnSaleInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    size?: StringFieldUpdateOperationsInput | string
   }
 
   export type SizeUncheckedUpdateWithoutGoodsOnSaleInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    size?: StringFieldUpdateOperationsInput | string
   }
 
   export type GoodsOnSaleCreateWithoutCategoryInput = {

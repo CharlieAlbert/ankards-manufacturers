@@ -26,6 +26,8 @@ model GoodsOnSale {
   sizeId     String
   price      Float
   createdAt  DateTime @default(now())
+
+  @@unique([name, categoryId, sizeId])
 }
 
 model Category {
@@ -36,7 +38,7 @@ model Category {
 
 model Size {
   id          String        @id @default(cuid())
-  name        String
+  size        String
   goodsOnSale GoodsOnSale[]
 }
 

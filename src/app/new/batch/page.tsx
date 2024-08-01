@@ -1,7 +1,7 @@
 'use client'
 
 import { Form, Input, InputNumber, Select, message } from 'antd'
-import { createGood } from '@/src/actions/finished-goods'
+import { createGood } from '../../../api/new-batch/finished-goods'
 import { useRouter } from 'next/navigation'
 
 const layout = {

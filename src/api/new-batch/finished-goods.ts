@@ -1,7 +1,7 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import prisma from '../lib/db'
+import prisma from '../../lib/db'
 import { format } from 'path'
 
 export async function createGood(formData: FormData) {
